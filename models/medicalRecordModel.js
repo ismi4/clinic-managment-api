@@ -1,22 +1,39 @@
+const validator = require('validator');
 const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const medicalRecordSchema = new mongoose.Schema({
   date: {
     type: Date,
-    required: [true, 'Medical record must have a date!']
+    required: [true, 'Medical record must have a date!'],
+    validate: {
+      validator: validator.isDate,
+      message: 'The date you entered is not in valid format!'
+    }
   },
   patientID: {
     type: Number,
-    required: [true, 'Medical record must have a patientID']
+    required: [true, 'Medical record must have a patientID'],
+    validate: {
+      validator: validator.isInt,
+      message: 'The patientID you entered should only contain integers!'
+    }
   },
   doctorID: {
     type: Number,
-    required: [true, 'Medical record must have a doctorID']
+    required: [true, 'Medical record must have a doctorID'],
+    validate: {
+      validator: validator.isInt,
+      message: 'The doctorID you entered should only contain integers!'
+    }
   },
   nurseID: {
     type: Number,
-    required: [true, 'Medical record must have a nurseID']
+    required: [true, 'Medical record must have a nurseID'],
+    validate: {
+      validator: validator.isInt,
+      message: 'The nurseID you entered should only contain integers!'
+    }
   },
   relevantMedicalHistory: {
     type: String,
