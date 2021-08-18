@@ -79,7 +79,7 @@ const patientSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['M', 'F'],
+    enum: { values: ['M', 'F'], message: 'Gender is either M or F.' },
     required: [true, 'A patient must have a gender!']
   },
   medicalRecords: [],
